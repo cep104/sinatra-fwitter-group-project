@@ -7,7 +7,7 @@ get '/tweets' do
     else
         @tweets = Tweet.all
         @user = User.find_by(id: session[:user_id])
-        erb :"tweets/index"
+        erb :"tweets/tweets"
     end
 end
 
