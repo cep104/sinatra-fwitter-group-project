@@ -6,7 +6,7 @@ end
 
 get '/signup' do
     if logged_in?
-        redirect :"/tweets/index"
+        redirect to :"/tweets/index"
     end
     erb :"/users/signup"
 end
@@ -16,9 +16,9 @@ post '/signup' do
     
     if !user.username.empty? && !user.email.empty? && user.save
         session[:user_id] = user.id
-        redirect :"/tweets"
+        redirect to :"/tweets"
     else
-        redirect :"/signup"
+        redirect to :"/signup"
     end
     puts params
 end
@@ -27,7 +27,7 @@ get '/login' do
     if !logged_in?
         erb :"users/login"
     else
-        redirect :"/tweets"
+        redirect to :"/tweets"
     end
 end
 
@@ -38,7 +38,7 @@ post '/login' do
         #binding.pry
         redirect to :"/tweets"
     else
-        redirect :"/signup"
+        redirect to :"/signup"
     end
 end
 

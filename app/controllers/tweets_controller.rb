@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 get '/tweets' do
    # binding.pry
     if !logged_in?
-        redirect :"/login"
+        redirect to :"/login"
     else
         @tweets = Tweet.all
         @user = User.find_by(id: session[:user_id])
@@ -15,7 +15,7 @@ get '/tweets/new' do
     if logged_in?
         erb :"tweets/new"
     else
-        redirect :"/login"
+        redirect to :"/login"
     end
 end
 
@@ -24,9 +24,9 @@ post '/tweets' do
     @tweet = Tweet.create(params)
     @tweet.user = current_user
     @tweet.save
-        redirect :"/tweets/#{@tweet.id}"
+        redirect to :"/tweets/#{@tweet.id}"
     else
-        redirect :"/tweets/new"
+        redirect to :"/tweets/new"
     end
 end
 
